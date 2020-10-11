@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+
+  # PostgreSQL
+  postgres:
+    container_name: postgres
+    build: ./postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_URL: postgres://admin:password@localhost:5432/mitrais-form
+      POSTGRES_DB: mitrais-form
+      POSTGRES_HOST: postgres
+    ports:
+      - "5432:5432"
+
+  # Backend
+  form-server:
+    # env_file:
+    #   - ./.private/api-keys.env "Another way to insert env variables"
+    container_name: backend
+    build: ./
+    volumes:
+      - ./:/usr/src/form-server
+    command: npm start
+    working_dir: /usr/src/form-server
+    ports:
+      - "8888:8888"
+    environment:
+      POSTGRES_URI: postgres://admin:password@postgres:5432/mitrais-form
