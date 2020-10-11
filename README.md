@@ -7,6 +7,8 @@ Back-end form for Mitrais Coding Test - using docker
 4. Run `docker-compose up` ( you may have to run `docker-compose up --build` for the first setup phase)
 5. If you want to running server in local env, you need to update line 12 in app.js.
 
+Server running on [http://localhost:8888](http://localhost:8888)
+
 **Important:** if you are getting conflict erros, you should run `docker stop <container name>` that is already running in the background.
 **Important:** if you are getting other erros, you should run `docker-compose down` to bring everything down, and start over.
 
